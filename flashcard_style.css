@@ -570,8 +570,12 @@ body {
   /* (replaced by explicit buttons below)    */
   .tap-left, .tap-right { display: none; }
 
-  /* ── Hide desktop tap hint ── */
-  .tap-hint { display: none; }
+  /* ── Hide desktop tap hint on mobile, show mobile hint ── */
+  .tap-hint {
+    display: block;
+    font-size: 12px;
+    padding: 8px 0 2px;
+  }
 
   /* ── Explicit prev / next buttons ── */
   .mobile-nav-row {

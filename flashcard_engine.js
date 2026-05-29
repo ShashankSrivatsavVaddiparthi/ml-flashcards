@@ -42,7 +42,6 @@
     applyFilter();
     render();
     bindKeys();
-    bindSwipe();
     window.addEventListener('resize', function() {
       checkMobile();
     });
@@ -254,26 +253,6 @@
     if (prev) prev.disabled = (currentIdx === 0 && currentStage === 0);
   }
 
-  /* ── Swipe support ───────────────────────── */
-  function bindSwipe() {
-    var card = document.getElementById('card-outer');
-    if (!card) return;
-    var startX = 0;
-    var startY = 0;
-    document.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    }, { passive: true });
-    document.addEventListener('touchend', function(e) {
-      if (!isMobile) return;
-      var dx = e.changedTouches[0].clientX - startX;
-      var dy = e.changedTouches[0].clientY - startY;
-      if (Math.abs(dx) < 40 || Math.abs(dy) > Math.abs(dx)) return;
-      if (dx < 0) tapRight();
-      else        tapLeft();
-    }, { passive: true });
-  }
-
   /* ── Filter / stage helpers ──────────────── */
   function applyFilter() {
     if (filterMode === 'review') {
@@ -351,9 +330,11 @@
       dotsHtml += '<div class="sdot' + (i <= currentStage ? ' active' : '') + '"></div>';
     }
 
-    var tapHint = currentStage < ms
-      ? 'Click right half to reveal more &nbsp;|&nbsp; Click left half to go back'
-      : 'Click right half for next card &nbsp;|&nbsp; Click left half to go back';
+    var tapHint = isMobile
+      ? (currentStage < ms ? 'Tap card to reveal more' : 'Tap card for next')
+      : (currentStage < ms
+          ? 'Click right half to reveal more &nbsp;|&nbsp; Click left half to go back'
+          : 'Click right half for next card &nbsp;|&nbsp; Click left half to go back');
 
     outer.innerHTML =
       '<div class="card" id="main-card">'
@@ -376,6 +357,17 @@
 
     document.getElementById('tap-right').addEventListener('click', tapRight);
     document.getElementById('tap-left' ).addEventListener('click', tapLeft);
+
+    /* On mobile, tapping anywhere on the card reveals the next stage */
+    if (isMobile) {
+      var cardEl = document.getElementById('main-card');
+      if (cardEl) {
+        cardEl.addEventListener('click', function(e) {
+          if (e.target.closest('#btn-known') || e.target.closest('#btn-review')) return;
+          tapRight();
+        });
+      }
+    }
     document.getElementById('btn-known').addEventListener('click', function(e) {
       e.stopPropagation();
       var cur = getCardState(card.id).status;
