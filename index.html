@@ -28,11 +28,11 @@
       <div class="batch-progress-mini"><div class="batch-progress-mini-fill" id="prog-b1" style="width:0%"></div></div>
     </a>
 
-    <a href="batch2.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+    <a href="batch2.html" class="batch-card">
       <div class="batch-card-num">Batch 2</div>
       <div class="batch-card-title">Core Machine Learning</div>
-      <div class="batch-card-count">Coming soon</div>
-      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+      <div class="batch-card-count">38 cards · Supervised Learning, Model Training, Evaluation, RMSE, MAE, Hyperparameter Tuning, Model Dev, Inference</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" id="prog-b2" style="width:0%"></div></div>
     </a>
 
     <a href="batch3.html" class="batch-card" style="opacity:0.5;pointer-events:none">
@@ -120,6 +120,10 @@
   const b1Known = getKnown('batch1', 35);
   const b1Pct   = Math.round(b1Known / 35 * 100);
   document.getElementById('prog-b1').style.width = b1Pct + '%';
+
+  const b2Known = getKnown('batch2', 38);
+  const b2Pct   = Math.round(b2Known / 38 * 100);
+  document.getElementById('prog-b2').style.width = b2Pct + '%';
 </script>
 
 </body>
