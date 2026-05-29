@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch 4 — Backend &amp; Deployment · Flashcards</title>
+<link rel="stylesheet" href="flashcard_style.css">
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="header-title">&#127891; ML Interview Flashcards</div>
+    <div class="header-sub">Batch 4 — Backend &amp; Deployment</div>
+  </div>
+  <div class="header-right">
+    <a href="index.html" style="color:rgba(255,255,255,0.7);font-size:13px;text-decoration:none">&#8592; All Batches</a>
+  </div>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+  <div class="progress-meta">
+    <span id="progress-meta-l">Card 1 of 30</span>
+    <span id="progress-meta-r">0 / 30 known</span>
+  </div>
+</div>
+<div class="filter-row">
+  <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">All Cards</button>
+  <button class="filter-btn" data-filter="review" onclick="setFilter('review')">&#8635; Review</button>
+</div>
+<div class="card-outer" id="card-outer">
+  <div class="empty-state"><p>Loading cards…</p></div>
+</div>
+<div class="nav-row">
+  <button class="nav-btn" onclick="history.back()">&#8592; Back</button>
+  <button class="nav-btn" onclick="restartBatch()">&#8635; Restart</button>
+</div>
+<script src="batch4_data.js"></script>
+<script src="flashcard_engine.js"></script>
+</body>
+</html>
