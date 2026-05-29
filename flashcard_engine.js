@@ -112,17 +112,15 @@
     layout.appendChild(sidebar);
     mainCol.appendChild(cardOuter);
 
-    /* Mobile nav row (Prev / Reveal / Next) */
+    /* Mobile nav row (Reveal / Skip) */
     var mobileNav = document.createElement('div');
     mobileNav.className = 'mobile-nav-row';
     mobileNav.id = 'mobile-nav-row';
     mobileNav.innerHTML =
-      '<button class="mobile-nav-btn" id="mob-prev">&#8592; Back</button>'
-      + '<button class="mobile-nav-btn primary" id="mob-reveal">Reveal &#8594;</button>'
+      '<button class="mobile-nav-btn primary" id="mob-reveal">Reveal &#8594;</button>'
       + '<button class="mobile-nav-btn" id="mob-next">Skip &#8594;&#8594;</button>';
     mainCol.appendChild(mobileNav);
 
-    document.getElementById('mob-prev').addEventListener('click', tapLeft);
     document.getElementById('mob-reveal').addEventListener('click', tapRight);
     document.getElementById('mob-next').addEventListener('click', function() {
       currentIdx++;
@@ -234,8 +232,7 @@
 
   /* ── Update mobile nav button label ──────── */
   function updateMobileRevealBtn() {
-    var btn  = document.getElementById('mob-reveal');
-    var next = document.getElementById('mob-next');
+    var btn = document.getElementById('mob-reveal');
     if (!btn) return;
     var card = filtered[currentIdx];
     if (!card) return;
@@ -248,9 +245,6 @@
       btn.style.background = '#1B5E20';
       btn.style.borderColor = '#1B5E20';
     }
-    /* disable back btn at first stage of first card */
-    var prev = document.getElementById('mob-prev');
-    if (prev) prev.disabled = (currentIdx === 0 && currentStage === 0);
   }
 
   /* ── Filter / stage helpers ──────────────── */
@@ -331,7 +325,7 @@
     }
 
     var tapHint = isMobile
-      ? (currentStage < ms ? 'Tap card to reveal more' : 'Tap card for next')
+      ? (currentStage < ms ? 'Tap right \u2192 reveal &nbsp;|&nbsp; \u2190 Tap left to go back' : 'Tap right \u2192 next card &nbsp;|&nbsp; \u2190 Tap left to go back')
       : (currentStage < ms
           ? 'Click right half to reveal more &nbsp;|&nbsp; Click left half to go back'
           : 'Click right half for next card &nbsp;|&nbsp; Click left half to go back');
@@ -358,13 +352,16 @@
     document.getElementById('tap-right').addEventListener('click', tapRight);
     document.getElementById('tap-left' ).addEventListener('click', tapLeft);
 
-    /* On mobile, tapping anywhere on the card reveals the next stage */
+    /* On mobile, left half of card = back, right half = reveal */
     if (isMobile) {
       var cardEl = document.getElementById('main-card');
       if (cardEl) {
         cardEl.addEventListener('click', function(e) {
           if (e.target.closest('#btn-known') || e.target.closest('#btn-review')) return;
-          tapRight();
+          var rect = cardEl.getBoundingClientRect();
+          var midX = rect.left + rect.width / 2;
+          if (e.clientX < midX) tapLeft();
+          else                  tapRight();
         });
       }
     }
