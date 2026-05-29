@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Interview Flashcards</title>
+<link rel="stylesheet" href="flashcard_style.css">
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">&#127891; ML Interview Flashcards</div>
+    <div class="header-sub">61 topics · 10 batches · Daily revision</div>
+  </div>
+</div>
+
+<div class="home-wrap">
+  <div class="home-title">Choose a Batch</div>
+  <div class="home-sub">Tap a batch to start. Your progress is saved automatically.</div>
+
+  <div class="batch-grid">
+
+    <a href="batch1.html" class="batch-card">
+      <div class="batch-card-num">Batch 1</div>
+      <div class="batch-card-title">Data Foundations</div>
+      <div class="batch-card-count">35 cards · Data Cleaning, Preprocessing, Feature Eng, Stats, Pandas, NumPy</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" id="prog-b1" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch2.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 2</div>
+      <div class="batch-card-title">Core Machine Learning</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch3.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 3</div>
+      <div class="batch-card-title">MLOps &amp; Experimentation</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch4.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 4</div>
+      <div class="batch-card-title">Backend &amp; Deployment</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch5.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 5</div>
+      <div class="batch-card-title">Deep Learning</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch6.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 6</div>
+      <div class="batch-card-title">Time Series &amp; Forecasting</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch7p1.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 7 Part 1</div>
+      <div class="batch-card-title">GenAI &amp; RAG Pipeline</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch7p2.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 7 Part 2</div>
+      <div class="batch-card-title">LLM Application Layer</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch8.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 8</div>
+      <div class="batch-card-title">Computer Vision</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch9.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 9</div>
+      <div class="batch-card-title">Viz, Tools &amp; Engineering</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+    <a href="batch10.html" class="batch-card" style="opacity:0.5;pointer-events:none">
+      <div class="batch-card-num">Batch 10</div>
+      <div class="batch-card-title">Professional Awareness</div>
+      <div class="batch-card-count">Coming soon</div>
+      <div class="batch-progress-mini"><div class="batch-progress-mini-fill" style="width:0%"></div></div>
+    </a>
+
+  </div>
+
+  <div style="margin-top:24px;padding:16px;background:#fff;border-radius:12px;border:1px solid #e0e0e0;font-size:13px;color:#757575;line-height:1.6">
+    <strong style="color:#1a1a1a">How to use:</strong>
+    Tap the <strong>right side</strong> of a card to reveal more (Interview Answer → Theory → Code).
+    Tap the <strong>left side</strong> to go back.
+    Mark cards as <strong>Known ✓</strong> or <strong>Review ↺</strong> to track progress.
+    Use <strong>Arrow keys</strong> on laptop.
+  </div>
+</div>
+
+<script>
+  // Load progress for each batch from localStorage
+  function getKnown(batchId, total) {
+    try {
+      const state = JSON.parse(localStorage.getItem('fc_' + batchId) || '{}');
+      return Object.values(state).filter(v => v.status === 'known').length;
+    } catch { return 0; }
+  }
+  const b1Known = getKnown('batch1', 35);
+  const b1Pct   = Math.round(b1Known / 35 * 100);
+  document.getElementById('prog-b1').style.width = b1Pct + '%';
+</script>
+
+</body>
+</html>
